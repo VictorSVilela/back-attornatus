@@ -9,9 +9,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "tbl_enderecos")
 public class Endereco {
@@ -28,7 +32,5 @@ public class Endereco {
     @ManyToOne
     @JsonIgnoreProperties("enderecos")
     private Pessoa pessoa;
-
-
 
 }
