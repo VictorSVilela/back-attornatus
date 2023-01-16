@@ -19,7 +19,7 @@ public class Pessoa {
     @Column(name = "pessoa_id")
     private Long pessoaId;
     private String nome;
-    private LocalDate dataNascimento;
+    private String dataNascimento;
 
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("pessoa")
