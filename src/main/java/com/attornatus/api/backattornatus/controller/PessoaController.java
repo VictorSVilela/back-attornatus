@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.attornatus.api.backattornatus.exceptions.NotFoundException;
 import com.attornatus.api.backattornatus.model.Pessoa;
 import com.attornatus.api.backattornatus.repository.PessoaRepository;
 
@@ -45,8 +46,8 @@ public class PessoaController {
     }
 
     @GetMapping("/consultar/{id}")
-    public ResponseEntity<Pessoa> consultarPessoa(@PathVariable(value = "id") Long pessoaId) {
-        Pessoa pessoa = pessoaRepository.findById(pessoaId).get();
-        return ResponseEntity.ok(pessoa);
+    public ResponseEntity<Pessoa> consultarPessoa(@PathVariable(value = "id") Long pessoaId) throws NotFoundException {
+        Pessoa pessoa = pessoaRepository.findById(pessoaId).orElseThrow(() -> new NotFoundException("Pessoa não encontrada"));
+        return ResponseEntity.ok().body(pessoa);
     }
 }
